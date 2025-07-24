@@ -1,10 +1,22 @@
 version: 0.0
 os: linux
+
 files:
-  - source: /
+  - source: .
     destination: /home/ec2-user/CD-CP
+
 hooks:
-  AfterInstall:
-    - location: scripts/deploy.sh
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: ec2-user
+
+  Install:
+    - location: scripts/install.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStart:
+    - location: scripts/start.sh
       timeout: 300
       runas: ec2-user
