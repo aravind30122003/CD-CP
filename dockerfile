@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 WORKDIR /app
-COPY requirements.txt requirements.txt
-RUN pip install -y --no-cache-dir -r requirements.txt
+COPY app/requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 COPY app/ .
-EXPOSE 5000
-CMD =[ "python", "app.py" ]
+CMD ["python", "app.py"]
+
