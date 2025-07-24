@@ -1,3 +1,7 @@
 #!/bin/bash
-echo "Cleaning old deployment files..."
-rm -rf /home/ec2-user/CD-CP/*
+echo "Stopping and removing old containers..."
+docker-compose -f /home/ec2-user/CD-CP/docker-compose.yml down
+
+echo "Removing dangling images..."
+docker image prune -f
+
